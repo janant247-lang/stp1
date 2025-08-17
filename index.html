@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Mathematics Class 10 - Complete Study Hub</title>
+    <script>
+// Safe Enhanced Search
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const chapters = document.querySelectorAll(".chapter-card"); 
+
+    // Store original text for reset
+    chapters.forEach(card => {
+        card.dataset.original = card.innerHTML;
+    });
+
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        let found = false;
+
+        chapters.forEach(card => {
+            // Reset to original first
+            card.innerHTML = card.dataset.original;
+
+            const text = card.innerText.toLowerCase();
+            if (text.includes(query)) {
+                card.style.display = "block";
+                found = true;
+
+                if (query.length > 0) {
+                    // Highlight only visible text (safe replace)
+                    const regex = new RegExp(`(${query})`, "gi");
+                    card.innerHTML = card.innerHTML.replace(regex, `<mark>$1</mark>`);
+                }
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        // No results message
+        let msg = document.getElementById("noResultsMsg");
+        if (!msg) {
+            msg = document.createElement("p");
+            msg.id = "noResultsMsg";
+            msg.style.textAlign = "center";
+            msg.style.marginTop = "10px";
+            msg.style.fontStyle = "italic";
+            searchInput.parentNode.appendChild(msg);
+        }
+        msg.innerText = found ? "" : "❌ No chapters found";
+    }
+
+    searchBtn.addEventListener("click", performSearch);
+    searchInput.addEventListener("keyup", performSearch);
+});
+</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --shadow: rgba(37, 99, 235, 0.2);
+            --gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #2563eb;
+            --accent-color: #60a5fa;
+            --success-color: #34d399;
+            --warning-color: #fbbf24;
+            --danger-color: #f87171;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --border-color: #334155;
+            --shadow: rgba(59, 130, 246, 0.3);
+            --gradient: linear-gradient(135deg, #1e40af, #3730a3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 25px, rgba(37, 99, 235, 0.05) 25px, rgba(37, 99, 235, 0.05) 27px),
+                repeating-linear-gradient(0deg, transparent, transparent 25px, rgba(37, 99, 235, 0.05) 25px, rgba(37, 99, 235, 0.05) 27px);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 70px;
+            height: 35px;
+            background: var(--border-color);
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-color);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 25px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(35px);
+            background: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .main-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: var(--gradient);
+            color: white;
+            margin-bottom: 40px;
+            border: 3px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        .book-title-main {
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .subtitle-main {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.95;
+        }
+
+        /* Horizontal Quick Access Grid */
+        .quick-access-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quick-access-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 180px;
+            white-space: nowrap;
+        }
+
+        .quick-access-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+        }
+
+        .quick-access-btn:hover::before {
+            left: 0;
+        }
+
+        .quick-access-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-color: white;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin: 30px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 3px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px var(--shadow);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        /* Book Showcase */
+        .book-showcase {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            background: var(--card-bg);
+            padding: 50px;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 15px 30px var(--shadow);
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .book-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .book-image-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .book-cover {
+            width: 280px;
+            height: 360px;
+            background: var(--gradient);
+            border: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .book-cover:hover::before {
+            left: 100%;
+        }
+
+        .book-cover:hover {
+            transform: scale(1.05) rotateY(5deg);
+        }
+
+        .book-info-section {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .book-title {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .book-details {
+            font-size: 1.3em;
+            line-height: 2;
+            margin-bottom: 35px;
+            color: var(--text-color);
+        }
+
+        .main-action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .action-btn {
+            padding: 20px 30px;
+            border: 3px solid var(--primary-color);
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .action-btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .action-btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .action-btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .action-btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Chapters Section */
+        .chapters-section {
+            margin-bottom: 60px;
+        }
+
+        .section-heading {
+            font-size: 3em;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        /* Chapter Filter */
+        .chapter-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 8px 16px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .chapter-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .chapter-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .chapter-topics {
+            color: var(--text-color);
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .chapter-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .progress-indicator {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .not-started {
+            background: #fef2f2;
+            color: var(--danger-color);
+        }
+
+        .in-progress {
+            background: #fef3c7;
+            color: var(--warning-color);
+        }
+
+        .completed {
+            background: #d1fae5;
+            color: var(--success-color);
+        }
+
+        .chapter-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .chapter-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .notes-btn {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .quiz-btn:hover, .notes-btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* Quiz Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .youtube-btn {
+        	background: #ff0000;
+            color: white;
+            border: 3px solid #cc0000;
+         }
+
+         .youtube-btn:hover {
+            background: #cc0000;
+            color: #fff;
+         }
+ 
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto;
+            padding: 30px;
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            color: var(--text-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .close:hover {
+            color: var(--danger-color);
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-color);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .quiz-option.selected {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .quiz-result {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quiz-result.correct {
+            background: #d1fae5;
+            color: var(--success-color);
+        }
+
+        .quiz-result.incorrect {
+            background: #fef2f2;
+            color: var(--danger-color);
+        }
+
+        /* Notes Section */
+        .notes-container {
+            margin-top: 20px;
+        }
+
+        .notes-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            background: var(--bg-color);
+            color: var(--text-color);
+            resize: vertical;
+        }
+
+        .notes-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .save-notes-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .save-notes-btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* Study Tips */
+        .study-tips {
+            background: var(--card-bg);
+            padding: 40px;
+            margin: 50px 0;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 12px 24px var(--shadow);
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .study-tips::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tip-card {
+            background: var(--bg-color);
+            padding: 25px;
+            border: 3px solid var(--border-color);
+            border-left: 6px solid var(--primary-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .tip-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 16px var(--shadow);
+            border-left-width: 12px;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Other Books */
+        .other-books {
+            background: var(--card-bg);
+            padding: 50px;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 15px 30px var(--shadow);
+            margin-bottom: 60px;
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .other-books::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: var(--bg-color);
+            padding: 30px;
+            border: 3px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .book-card:hover::before {
+            left: 100%;
+        }
+
+        .book-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 12px 24px var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .book-icon {
+            width: 80px;
+            height: 100px;
+            background: var(--gradient);
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.4em;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .book-card:hover .book-icon {
+            transform: rotateY(180deg);
+        }
+
+        .book-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3em;
+        }
+
+        .book-buy-btn {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .book-buy-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 4px solid var(--primary-color);
+            margin-top: 60px;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .footer p {
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .book-title-main {
+                font-size: 2.5em;
+            }
+            
+            .quick-access-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-access-btn {
+                min-width: 250px;
+            }
+            
+            .main-action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .dark-mode-container {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .chapter-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-access-btn {
+                min-width: 200px;
+                padding: 10px 15px;
+                font-size: 0.8em;
+            }
+
+            .section-heading {
+                font-size: 2em;
+            }
+
+            .chapter-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Keyboard Navigation */
+        .keyboard-nav *:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '⏳';
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-container">
+        <div class="toggle-switch" id="darkModeSwitch">
+            <div class="toggle-slider">🌙</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <h1 class="book-title-main">MATHEMATICS TEXTBOOK FOR CLASS X</h1>
+            <p class="subtitle-main">NCERT Complete Study Hub & Progress Tracker</p>
+            
+            <!-- Horizontal Quick Access Buttons -->
+            <div class="quick-access-grid">
+                <a href="https://ncert.nic.in/" target="_blank" class="quick-access-btn pulse-animation">
+                    🏠 NCERT Official
+                </a>
+                <a href="https://ncert.nic.in/textbook.php" target="_blank" class="quick-access-btn">
+                    📚 All Textbooks
+                </a>
+                <a href="https://ncert.nic.in/exemplar-problems.php" target="_blank" class="quick-access-btn">
+                    📝 Exemplar Problems
+                </a>
+                <a href="https://ncert.nic.in/syllabus.php" target="_blank" class="quick-access-btn">
+                    📋 Latest Syllabus
+                </a>
+            </div>
+        </header>
+
+        <!-- Search and Progress Section -->
+        <section class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search chapters, topics, or concepts...">
+            <button class="search-btn" id="searchBtn">🔍</button>
+        </section>
+
+        <!-- Progress Tracking -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <h3>📊 Your Study Progress</h3>
+                <div id="progressStats">
+                    <span id="completedChapters">0</span>/15 Chapters Completed
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.9em;">
+                <span>🔴 Not Started: <span id="notStartedCount">15</span></span>
+                <span>🟡 In Progress: <span id="inProgressCount">0</span></span>
+                <span>🟢 Completed: <span id="completedCount">0</span></span>
+            </div>
+        </section>
+
+        <!-- Book Showcase -->
+        <section class="book-showcase">
+            <div class="book-image-section">
+               <div class="book-cover">
+               	<img src="images/math10.jpg" alt="NCERT Class 10 Maths Book" style="width:100%; height:auto; border-radius:10px;">
+               </div>
+            </div>
+            
+            <div class="book-info-section">
+                <h2 class="book-title">Mathematics Textbook</h2>
+                <div class="book-details">
+                    <strong>Class:</strong> 10th Standard (CBSE/NCERT)<br>
+                    <strong>Chapters:</strong> 15 Comprehensive Chapters<br>
+                    <strong>Language:</strong> English<br>
+                    <strong>Format:</strong> PDF & Print Available<br>
+                    <strong>Publisher:</strong> NCERT, Government of India<br>
+                    <strong>Academic Year:</strong> 2024-25 Latest Edition
+                </div>
+                
+                <div class="main-action-buttons">
+                    <a href="https://ncert.nic.in/textbook.php?jemh1=0-13" target="_blank" class="action-btn action-btn-primary">
+                        📖 Download PDF
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=YsCtU9wt5Ug" target="_blank" class="action-btn youtube-btn">
+                         ▶️ Watch All Maths NCERT
+                    </a>
+                    <a href="https://ncert.nic.in/ncerts-new-publications.php" target="_blank" class="action-btn action-btn-primary">
+                        📑 Supplementary Material
+                    </a>
+                    <a href="https://ncert.nic.in/exemplar-problems.php" target="_blank" class="action-btn action-btn-secondary">
+                        🧮 Exemplar Problems
+                    </a>
+                    <a href="https://cbseacademic.nic.in/qp.php" target="_blank" class="action-btn action-btn-secondary">
+                        ❓ Question Bank
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapters Section -->
+        <section class="chapters-section">
+            <h2 class="section-heading">Chapter Overview</h2>
+            
+            <!-- Chapter Filter -->
+            <div class="chapter-filter">
+                <button class="filter-btn active" data-filter="all">All Chapters</button>
+                <button class="filter-btn" data-filter="algebra">Algebra</button>
+                <button class="filter-btn" data-filter="geometry">Geometry</button>
+                <button class="filter-btn" data-filter="trigonometry">Trigonometry</button>
+                <button class="filter-btn" data-filter="statistics">Statistics & Probability</button>
+            </div>
+
+            <div class="chapters-grid" id="chaptersGrid">
+                <div class="chapter-card" data-category="algebra" data-chapter="1">
+                    <div class="chapter-number">Chapter 1</div>
+                    <div class="chapter-title">Real Numbers</div>
+                    <div class="chapter-topics">Euclid's division lemma, Fundamental theorem of arithmetic, HCF and LCM, Decimal representation of rational numbers, Irrational numbers</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-1">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(1)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="algebra" data-chapter="2">
+                    <div class="chapter-number">Chapter 2</div>
+                    <div class="chapter-title">Polynomials</div>
+                    <div class="chapter-topics">Polynomials in one variable, Zeroes of polynomial, Relationship between zeroes and coefficients, Division algorithm for polynomials</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-2">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(2)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="algebra" data-chapter="3">
+                    <div class="chapter-number">Chapter 3</div>
+                    <div class="chapter-title">Pair of Linear Equations in Two Variables</div>
+                    <div class="chapter-topics">Graphical method of solution, Algebraic methods: substitution, elimination, cross-multiplication method</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-3">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(3)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="algebra" data-chapter="4">
+                    <div class="chapter-number">Chapter 4</div>
+                    <div class="chapter-title">Quadratic Equations</div>
+                    <div class="chapter-topics">Standard form, Solution by factorization, Completing the square method, Quadratic formula, Nature of roots</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-4">Not Started</div>
+                        <div>⭐ Difficulty: Hard</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(4)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="algebra" data-chapter="5">
+                    <div class="chapter-number">Chapter 5</div>
+                    <div class="chapter-title">Arithmetic Progressions</div>
+                    <div class="chapter-topics">General term of A.P., Sum of first n terms, Arithmetic mean between two numbers</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-5">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(5)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="6">
+                    <div class="chapter-number">Chapter 6</div>
+                    <div class="chapter-title">Triangles</div>
+                    <div class="chapter-topics">Similar triangles, Criteria for similarity AAA, SAS, SSS, Areas of similar triangles, Pythagoras theorem</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-6">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(6)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="7">
+                    <div class="chapter-number">Chapter 7</div>
+                    <div class="chapter-title">Coordinate Geometry</div>
+                    <div class="chapter-topics">Distance formula, Section formula, Area of triangle using coordinates</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-7">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(7)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="trigonometry" data-chapter="8">
+                    <div class="chapter-number">Chapter 8</div>
+                    <div class="chapter-title">Introduction to Trigonometry</div>
+                    <div class="chapter-topics">Trigonometric ratios, Trigonometric identities, Trigonometric ratios of complementary angles</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-8">Not Started</div>
+                        <div>⭐ Difficulty: Hard</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(8)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="trigonometry" data-chapter="9">
+                    <div class="chapter-number">Chapter 9</div>
+                    <div class="chapter-title">Some Applications of Trigonometry</div>
+                    <div class="chapter-topics">Heights and distances, Line of sight, Angle of elevation and depression, Applications in real life</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-9">Not Started</div>
+                        <div>⭐ Difficulty: Hard</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(9)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="10">
+                    <div class="chapter-number">Chapter 10</div>
+                    <div class="chapter-title">Circles</div>
+                    <div class="chapter-topics">Tangent to circle, Number of tangents from external point, Length of tangent from external point</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-10">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(10)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="11">
+                    <div class="chapter-number">Chapter 11</div>
+                    <div class="chapter-title">Constructions</div>
+                    <div class="chapter-topics">Division of line segment internally, Construction of tangents to circle from external point</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-11">Not Started</div>
+                        <div>⭐ Difficulty: Easy</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(11)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="12">
+                    <div class="chapter-number">Chapter 12</div>
+                    <div class="chapter-title">Areas Related to Circles</div>
+                    <div class="chapter-topics">Perimeter and area of circle, Areas of sector and segment of circle, Areas of combination of plane figures</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-12">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(12)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="geometry" data-chapter="13">
+                    <div class="chapter-number">Chapter 13</div>
+                    <div class="chapter-title">Surface Areas and Volumes</div>
+                    <div class="chapter-topics">Surface area and volume of combination of solids, Conversion of solid from one shape to another, Frustum of cone</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-13">Not Started</div>
+                        <div>⭐ Difficulty: Hard</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(13)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="statistics" data-chapter="14">
+                    <div class="chapter-number">Chapter 14</div>
+                    <div class="chapter-title">Statistics</div>
+                    <div class="chapter-topics">Mean of grouped data by direct, assumed mean, step deviation method, Mode and median of grouped data, Ogive</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-14">Not Started</div>
+                        <div>⭐ Difficulty: Medium</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(14)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+
+                <div class="chapter-card" data-category="statistics" data-chapter="15">
+                    <div class="chapter-number">Chapter 15</div>
+                    <div class="chapter-title">Probability</div>
+                    <div class="chapter-topics">Classical definition of probability, Simple problems on probability of events, Complementary events</div>
+                    <div class="chapter-progress">
+                        <div class="progress-indicator not-started" id="progress-15">Not Started</div>
+                        <div>⭐ Difficulty: Easy</div>
+                    </div>
+                    <div class="chapter-actions">
+                        <button class="chapter-btn quiz-btn" onclick="openQuiz(15)">📝 Quick Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Modal -->
+        <div id="quizModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeQuiz">&times;</span>
+                <h2 id="quizTitle">Chapter Quiz</h2>
+                <div id="quizContent">
+                    <div class="quiz-question">
+                        <h3 id="questionText">Loading question...</h3>
+                        <div class="quiz-options" id="quizOptions">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                        <button class="action-btn action-btn-primary" id="submitAnswer" style="margin-top: 20px;">Submit Answer</button>
+                        <button class="action-btn action-btn-secondary" id="nextQuestion" style="margin-top: 20px; display: none;">Next Question</button>
+                        <button class="action-btn action-btn-success" id="markComplete" style="margin-top: 20px; display: none;">Mark Chapter Complete</button>
+                    </div>
+                    <div id="quizResult" class="quiz-result" style="display: none;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <span id="questionCounter">Question 1 of 3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Tips -->
+        <section class="study-tips">
+            <h2 class="section-heading">Expert Study Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-title">📚 Daily Practice Routine</div>
+                    <p>Solve minimum 10-15 problems daily from different chapters. Use the quiz feature to test your understanding and track progress systematically.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">📝 Interactive Notes</div>
+                    <p>Use our built-in notes feature for each chapter. Write key formulas, important points, and personal insights for quick revision.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🎯 Progress Tracking</div>
+                    <p>Monitor your chapter completion status with our visual progress tracker. Set daily goals and maintain consistency.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🔍 Smart Search</div>
+                    <p>Use the search feature to quickly find specific topics across all chapters. Great for targeted revision and doubt clearing.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">📊 Category-wise Study</div>
+                    <p>Filter chapters by categories (Algebra, Geometry, etc.) to focus on specific areas that need more attention.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🧮 NCERT Integration</div>
+                    <p>Access official NCERT resources directly through our quick links. Download exemplar problems and supplementary materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other NCERT Books -->
+        <section class="other-books">
+            <h2 class="section-heading">More Class 10 NCERT Books</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/science10.jpg" alt="NCERT Class 10 Science Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>Science</h3>
+                    <p>Physics, Chemistry, Biology - Complete integrated science curriculum with practical applications</p>
+                    <a href="https://ncert.nic.in/textbook.php?jesc1=0-16" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/sst10.jpg" alt="NCERT Class 10 Social Science Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>Social Science</h3>
+                    <p>History, Geography, Political Science, Economics - Comprehensive social studies coverage</p>
+                    <a href="https://ncert.nic.in/textbook.php?jess1=0-14" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/english10.jpg" alt="NCERT Class 10 English Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>English</h3>
+                    <p>First Flight, Footprints Without Feet - Literature, language skills, and communication</p>
+                    <a href="https://ncert.nic.in/textbook.php?jeen1=0-15" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/hindi10.jpg" alt="NCERT Class 10 Hindi Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>Hindi</h3>
+                    <p>Sparsh, Sanchayan - Hindi literature, grammar, and language development</p>
+                    <a href="https://ncert.nic.in/textbook.php?jehn1=0-17" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/sanskrit10.jpg" alt="NCERT Class 10 Sanskrit Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>Sanskrit</h3>
+                    <p>Shemushi - Classical Sanskrit literature, grammar, and ancient texts</p>
+                    <a href="https://ncert.nic.in/textbook.php?jesn1=0-7" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+                <div class="book-card">
+                	<div class="book-icon">
+                		<img src="images/urdu10.jpg" alt="NCERT Class 10 Urdu Book" style="width:100%; height:auto; border-radius:8px;">
+                	</div>
+                    <h3>Urdu</h3>
+                    <p>Door-e-Jadeed - Urdu literature, poetry, and linguistic development</p>
+                    <a href="https://ncert.nic.in/textbook.php?jeun1=0-7" target="_blank" class="book-buy-btn">Access Now</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+    	<p>Enhanced NCERT Mathematics Study Hub - Created by Anant Jain</p>
+        <p>📧 Email: Janant247@gmail.com</p>
+        <p>🆔 Enrollment No: 01120803123</p>
+        <p>🏫 College: BPIT, Rohini</p>
+    </footer>
+
+    <script>
+        // Quiz questions database
+        const quizData = {
+            1: [
+                {
+                    question: "What is Euclid's Division Lemma?",
+                    options: ["a = bq + r, where 0 ≤ r < b", "a = bq - r", "a = b + qr", "a = bq"],
+                    correct: 0,
+                    explanation: "Euclid's Division Lemma states that for any two positive integers a and b, there exist unique integers q and r such that a = bq + r, where 0 ≤ r < b."
+                },
+                {
+                    question: "The decimal expansion of a rational number is:",
+                    options: ["Always terminating", "Always non-terminating", "Either terminating or non-terminating repeating", "Never repeating"],
+                    correct: 2,
+                    explanation: "The decimal expansion of a rational number is either terminating or non-terminating repeating."
+                },
+                {
+                    question: "Which of the following is an irrational number?",
+                    options: ["0.75", "√16", "√2", "22/7"],
+                    correct: 2,
+                    explanation: "√2 is an irrational number because it cannot be expressed as a ratio of two integers."
+                }
+            ],
+            2: [
+                {
+                    question: "The degree of polynomial 3x³ + 2x² - x + 5 is:",
+                    options: ["5", "3", "2", "1"],
+                    correct: 1,
+                    explanation: "The degree of a polynomial is the highest power of the variable, which is 3 in this case."
+                },
+                {
+                    question: "If α and β are zeroes of polynomial x² - 5x + 6, then α + β = ?",
+                    options: ["5", "-5", "6", "-6"],
+                    correct: 0,
+                    explanation: "For a quadratic polynomial ax² + bx + c, sum of zeroes = -b/a = -(-5)/1 = 5"
+                },
+                {
+                    question: "The number of zeroes of polynomial p(x) = (x-2)²(x+1) is:",
+                    options: ["1", "2", "3", "4"],
+                    correct: 2,
+                    explanation: "The polynomial has zeroes at x = 2 (with multiplicity 2) and x = -1, giving a total of 3 zeroes."
+                }
+            ],
+            3: [
+                {
+                    question: "The pair of equations x + y = 5 and 2x + 2y = 10 has:",
+                    options: ["Unique solution", "No solution", "Infinitely many solutions", "Two solutions"],
+                    correct: 2,
+                    explanation: "Since the second equation is just 2 times the first equation, they represent the same line and have infinitely many solutions."
+                },
+                {
+                    question: "If the lines represented by 2x + 3y = 5 and 4x + 6y = 15 are:",
+                    options: ["Intersecting", "Parallel", "Coincident", "Perpendicular"],
+                    correct: 1,
+                    explanation: "Since a₁/a₂ = b₁/b₂ ≠ c₁/c₂, the lines are parallel."
+                },
+                {
+                    question: "The solution of x + y = 7 and x - y = 1 is:",
+                    options: ["(4, 3)", "(3, 4)", "(5, 2)", "(2, 5)"],
+                    correct: 0,
+                    explanation: "Adding the equations: 2x = 8, so x = 4. Substituting back: y = 3."
+                }
+            ],
+            4: [
+                {
+                    question: "The discriminant of quadratic equation 2x² - 4x + 3 = 0 is:",
+                    options: ["8", "-8", "16", "-16"],
+                    correct: 1,
+                    explanation: "Discriminant = b² - 4ac = (-4)² - 4(2)(3) = 16 - 24 = -8"
+                },
+                {
+                    question: "If discriminant of a quadratic equation is zero, then roots are:",
+                    options: ["Real and distinct", "Real and equal", "Imaginary", "Irrational"],
+                    correct: 1,
+                    explanation: "When discriminant = 0, the quadratic equation has real and equal roots."
+                },
+                {
+                    question: "The sum of roots of equation x² - 7x + 12 = 0 is:",
+                    options: ["7", "-7", "12", "-12"],
+                    correct: 0,
+                    explanation: "For ax² + bx + c = 0, sum of roots = -b/a = -(-7)/1 = 7"
+                }
+            ],
+            5: [
+                {
+                    question: "The 10th term of A.P. 2, 5, 8, 11, ... is:",
+                    options: ["29", "32", "35", "38"],
+                    correct: 0,
+                    explanation: "First term a = 2, common difference d = 3. Using an = a + (n-1)d, a₁₀ = 2 + (10-1)×3 = 2 + 27 = 29"
+                },
+                {
+                    question: "The sum of first 10 terms of A.P. 3, 7, 11, 15, ... is:",
+                    options: ["210", "220", "230", "240"],
+                    correct: 1,
+                    explanation: "Using Sn = n/2[2a + (n-1)d], S₁₀ = 10/2[2×3 + (10-1)×4] = 5[6 + 36] = 5×42 = 210"
+                },
+                {
+                    question: "In an A.P., if a = 5, d = 3, then the 8th term is:",
+                    options: ["23", "26", "29", "32"],
+                    correct: 1,
+                    explanation: "Using an = a + (n-1)d, a₈ = 5 + (8-1)×3 = 5 + 21 = 26"
+                }
+            ],
+            6: [
+                {
+                    question: "If triangles ABC and DEF are similar, then:",
+                    options: ["AB/DE = BC/EF = AC/DF", "∠A = ∠D, ∠B = ∠E, ∠C = ∠F", "Both A and B", "None of these"],
+                    correct: 2,
+                    explanation: "In similar triangles, corresponding sides are proportional and corresponding angles are equal."
+                },
+                {
+                    question: "The areas of two similar triangles are 25 cm² and 36 cm². The ratio of their corresponding sides is:",
+                    options: ["25:36", "5:6", "125:216", "√25:√36"],
+                    correct: 1,
+                    explanation: "The ratio of areas of similar triangles is equal to the square of the ratio of corresponding sides. So ratio of sides = √25:√36 = 5:6"
+                },
+                {
+                    question: "In a right triangle, if one leg is 3 cm and hypotenuse is 5 cm, the other leg is:",
+                    options: ["4 cm", "2 cm", "6 cm", "8 cm"],
+                    correct: 0,
+                    explanation: "Using Pythagoras theorem: a² + b² = c². So 3² + b² = 5², which gives b² = 25 - 9 = 16, hence b = 4 cm."
+                }
+            ],
+            7: [
+                {
+                    question: "The distance between points (0, 0) and (3, 4) is:",
+                    options: ["5", "7", "25", "12"],
+                    correct: 0,
+                    explanation: "Using distance formula: d = √[(x₂-x₁)² + (y₂-y₁)²] = √[(3-0)² + (4-0)²] = √[9 + 16] = √25 = 5"
+                },
+                {
+                    question: "The coordinates of the midpoint of line segment joining (2, 3) and (4, 7) are:",
+                    options: ["(3, 5)", "(6, 10)", "(1, 2)", "(2, 4)"],
+                    correct: 0,
+                    explanation: "Midpoint formula: ((x₁+x₂)/2, (y₁+y₂)/2) = ((2+4)/2, (3+7)/2) = (3, 5)"
+                },
+                {
+                    question: "Area of triangle with vertices (0, 0), (3, 0), and (0, 4) is:",
+                    options: ["6", "12", "7", "5"],
+                    correct: 0,
+                    explanation: "Area = ½|x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)| = ½|0(0-4) + 3(4-0) + 0(0-0)| = ½|12| = 6"
+                }
+            ],
+            8: [
+                {
+                    question: "If sin θ = 3/5, then cos θ = ?",
+                    options: ["4/5", "3/4", "5/3", "5/4"],
+                    correct: 0,
+                    explanation: "Using sin²θ + cos²θ = 1: cos²θ = 1 - (3/5)² = 1 - 9/25 = 16/25, so cos θ = 4/5"
+                },
+                {
+                    question: "The value of sin 30° is:",
+                    options: ["1/2", "√3/2", "1", "√2/2"],
+                    correct: 0,
+                    explanation: "sin 30° = 1/2 is a standard trigonometric value."
+                },
+                {
+                    question: "sin²θ + cos²θ = ?",
+                    options: ["1", "0", "2", "sin θ cos θ"],
+                    correct: 0,
+                    explanation: "This is the fundamental trigonometric identity: sin²θ + cos²θ = 1"
+                }
+            ],
+            9: [
+                {
+                    question: "A tower casts a shadow 30m long when the angle of elevation of sun is 30°. The height of tower is:",
+                    options: ["10√3 m", "30√3 m", "15 m", "20 m"],
+                    correct: 0,
+                    explanation: "Using tan 30° = height/shadow: height = shadow × tan 30° = 30 × (1/√3) = 30/√3 = 10√3 m"
+                },
+                {
+                    question: "From the top of a 100m tower, angle of depression to a point is 60°. Distance of point from tower is:",
+                    options: ["100/√3 m", "100√3 m", "50 m", "200 m"],
+                    correct: 0,
+                    explanation: "Using tan 60° = height/distance: distance = height/tan 60° = 100/√3 m"
+                },
+                {
+                    question: "If angle of elevation increases, then height:",
+                    options: ["Increases", "Decreases", "Remains same", "Cannot be determined"],
+                    correct: 0,
+                    explanation: "When angle of elevation increases for the same horizontal distance, the height increases."
+                }
+            ],
+            10: [
+                {
+                    question: "How many tangents can be drawn to a circle from an external point?",
+                    options: ["1", "2", "3", "Infinite"],
+                    correct: 1,
+                    explanation: "Exactly two tangents can be drawn to a circle from any external point."
+                },
+                {
+                    question: "The length of tangent from external point to circle with center O and radius r, where distance from point to center is d:",
+                    options: ["√(d² + r²)", "√(d² - r²)", "d + r", "d - r"],
+                    correct: 1,
+                    explanation: "Length of tangent = √(d² - r²) where d is distance from external point to center and r is radius."
+                },
+                {
+                    question: "Tangent to a circle is _____ to radius at point of contact:",
+                    options: ["Parallel", "Perpendicular", "Equal", "None"],
+                    correct: 1,
+                    explanation: "A tangent to a circle is always perpendicular to the radius at the point of tangency."
+                }
+            ],
+            11: [
+                {
+                    question: "To divide a line segment AB in ratio 3:4, how many equal parts should AB be divided?",
+                    options: ["3", "4", "7", "12"],
+                    correct: 2,
+                    explanation: "To divide in ratio 3:4, the line segment should be divided into 3+4=7 equal parts."
+                },
+                {
+                    question: "In construction of tangent from external point, the angle in semicircle is:",
+                    options: ["45°", "60°", "90°", "120°"],
+                    correct: 2,
+                    explanation: "The angle in a semicircle is always 90°, which is used in tangent construction."
+                },
+                {
+                    question: "Basic tool used for construction is:",
+                    options: ["Scale only", "Compass only", "Both scale and compass", "Protractor"],
+                    correct: 2,
+                    explanation: "Geometric constructions require both compass and straightedge (scale)."
+                }
+            ],
+            12: [
+                {
+                    question: "Area of circle with radius 7 cm is:",
+                    options: ["154 cm²", "44 cm²", "22 cm²", "77 cm²"],
+                    correct: 0,
+                    explanation: "Area = πr² = (22/7) × 7² = (22/7) × 49 = 22 × 7 = 154 cm²"
+                },
+                {
+                    question: "Area of sector with central angle 60° and radius 6 cm is:",
+                    options: ["6π cm²", "3π cm²", "18π cm²", "36π cm²"],
+                    correct: 0,
+                    explanation: "Area of sector = (θ/360°) × πr² = (60°/360°) × π × 6² = (1/6) × 36π = 6π cm²"
+                },
+                {
+                    question: "Perimeter of semicircle with radius r is:",
+                    options: ["πr", "2πr", "πr + 2r", "2πr + r"],
+                    correct: 2,
+                    explanation: "Perimeter of semicircle = πr (curved part) + 2r (diameter) = πr + 2r"
+                }
+            ],
+            13: [
+                {
+                    question: "Volume of cube with side 'a' is:",
+                    options: ["a²", "a³", "6a²", "4a"],
+                    correct: 1,
+                    explanation: "Volume of cube = side³ = a³"
+                },
+                {
+                    question: "If radius of sphere is doubled, volume becomes:",
+                    options: ["Double", "4 times", "8 times", "16 times"],
+                    correct: 2,
+                    explanation: "Volume of sphere = (4/3)πr³. If radius doubles, new volume = (4/3)π(2r)³ = 8 × (4/3)πr³"
+                },
+                {
+                    question: "Curved surface area of cone with radius r and slant height l is:",
+                    options: ["πr²", "πrl", "2πr", "πr² + πrl"],
+                    correct: 1,
+                    explanation: "Curved surface area of cone = πrl where r is radius and l is slant height."
+                }
+            ],
+            14: [
+                {
+                    question: "For data: 2, 4, 6, 8, 10, the mean is:",
+                    options: ["5", "6", "7", "8"],
+                    correct: 1,
+                    explanation: "Mean = (2+4+6+8+10)/5 = 30/5 = 6"
+                },
+                {
+                    question: "The mode of data 3, 5, 3, 7, 3, 9 is:",
+                    options: ["3", "5", "7", "9"],
+                    correct: 0,
+                    explanation: "Mode is the most frequently occurring value. Here 3 appears 3 times."
+                },
+                {
+                    question: "For grouped data, mean by direct method uses:",
+                    options: ["xi × fi", "Assumed mean", "Step deviation", "None"],
+                    correct: 0,
+                    explanation: "Direct method for mean = Σ(xi × fi)/Σfi where xi is class mark and fi is frequency."
+                }
+            ],
+            15: [
+                {
+                    question: "Probability of getting a head when coin is tossed:",
+                    options: ["0", "1/2", "1", "2"],
+                    correct: 1,
+                    explanation: "For a fair coin, P(Head) = Number of favorable outcomes/Total outcomes = 1/2"
+                },
+                {
+                    question: "If P(E) = 0.7, then P(not E) = ?",
+                    options: ["0.3", "0.7", "1.4", "1.7"],
+                    correct: 0,
+                    explanation: "P(not E) = 1 - P(E) = 1 - 0.7 = 0.3"
+                },
+                {
+                    question: "Probability of impossible event is:",
+                    options: ["0", "1", "0.5", "Cannot be determined"],
+                    correct: 0,
+                    explanation: "The probability of an impossible event is always 0."
+                }
+            ]
+        };
+
+        // Global variables
+        let currentChapter = 1;
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+        let chapterProgress = {};
+        let chapterNotes = {};
+
+        // Initialize progress for all chapters
+        for (let i = 1; i <= 15; i++) {
+            chapterProgress[i] = 'not-started';
+        }
+
+        // Dark mode functionality
+        const darkModeSwitch = document.getElementById('darkModeSwitch');
+        const body = document.body;
+
+        darkModeSwitch.addEventListener('click', () => {
+            darkModeSwitch.classList.toggle('active');
+            if (darkModeSwitch.classList.contains('active')) {
+                body.setAttribute('data-theme', 'dark');
+                darkModeSwitch.querySelector('.toggle-slider').textContent = '☀️';
+            } else {
+                body.removeAttribute('data-theme');
+                darkModeSwitch.querySelector('.toggle-slider').textContent = '🌙';
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            const chapterCards = document.querySelectorAll('.chapter-card');
+
+            chapterCards.forEach(card => {
+                const title = card.querySelector('.chapter-title').textContent.toLowerCase();
+                const topics = card.querySelector('.chapter-topics').textContent.toLowerCase();
+                const chapterNum = card.querySelector('.chapter-number').textContent.toLowerCase();
+
+                if (title.includes(query) || topics.includes(query) || chapterNum.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'pulse 0.5s ease-in-out';
+                } else {
+                    card.style.display = query === '' ? 'block' : 'none';
+                }
+            });
+
+            if (query === '') {
+                chapterCards.forEach(card => {
+                    card.style.display = 'block';
+                    card.style.animation = 'none';
+                });
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Clear animation after it completes
+        document.addEventListener('animationend', (e) => {
+            if (e.animationName === 'pulse') {
+                e.target.style.animation = 'none';
+            }
+        });
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const chapterCards = document.querySelectorAll('.chapter-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                chapterCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Quiz functionality
+        function openQuiz(chapter) {
+            currentChapter = chapter;
+            currentQuestion = 0;
+            userAnswers = [];
+            score = 0;
+
+            const modal = document.getElementById('quizModal');
+            const title = document.getElementById('quizTitle');
+            
+            title.textContent = `Chapter ${chapter} Quiz`;
+            
+            // Mark chapter as in progress if not already completed
+            if (chapterProgress[chapter] === 'not-started') {
+                updateChapterProgress(chapter, 'in-progress');
+            }
+            
+            showQuestion();
+            modal.style.display = 'block';
+        }
+
+        function showQuestion() {
+            const questions = quizData[currentChapter];
+            const question = questions[currentQuestion];
+            
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('questionCounter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            document.getElementById('submitAnswer').style.display = 'inline-block';
+            document.getElementById('nextQuestion').style.display = 'none';
+            document.getElementById('markComplete').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'none';
+        }
+
+        function selectOption(index) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[index].classList.add('selected');
+            userAnswers[currentQuestion] = index;
+        }
+
+        function submitAnswer() {
+            const questions = quizData[currentChapter];
+            const question = questions[currentQuestion];
+            const userAnswer = userAnswers[currentQuestion];
+            
+            if (userAnswer === undefined) {
+                alert('Please select an answer!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('quizResult');
+            const isCorrect = userAnswer === question.correct;
+            
+            if (isCorrect) {
+                score++;
+                resultDiv.className = 'quiz-result correct';
+                resultDiv.innerHTML = `<strong>✅ Correct!</strong><br>${question.explanation}`;
+            } else {
+                resultDiv.className = 'quiz-result incorrect';
+                resultDiv.innerHTML = `<strong>❌ Incorrect!</strong><br>Correct answer: ${question.options[question.correct]}<br>${question.explanation}`;
+            }
+            
+            resultDiv.style.display = 'block';
+            document.getElementById('submitAnswer').style.display = 'none';
+            
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('nextQuestion').style.display = 'inline-block';
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function showFinalScore() {
+            const questions = quizData[currentChapter];
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.className = percentage >= 70 ? 'quiz-result correct' : 'quiz-result incorrect';
+            resultDiv.innerHTML = `
+                <h3>Quiz Complete!</h3>
+                <p>Your Score: ${score}/${questions.length} (${percentage}%)</p>
+                <p>${percentage >= 70 ? '🎉 Great job! You can mark this chapter as complete.' : '📚 Keep practicing! Review the concepts and try again.'}</p>
+            `;
+            
+            if (percentage >= 70) {
+                document.getElementById('markComplete').style.display = 'inline-block';
+            }
+        }
+
+        function markChapterComplete() {
+            updateChapterProgress(currentChapter, 'completed');
+            document.getElementById('quizModal').style.display = 'none';
+            alert(`Chapter ${currentChapter} marked as complete! 🎉`);
+        }
+
+        // Notes functionality
+        function openNotes(chapter) {
+            currentChapter = chapter;
+            const modal = document.getElementById('notesModal');
+            const title = document.getElementById('notesTitle');
+            const input = document.getElementById('notesInput');
+            
+            title.textContent = `Chapter ${chapter} - Notes`;
+            input.value = chapterNotes[chapter] || '';
+            
+            modal.style.display = 'block';
+        }
+
+        function saveNotes() {
+            const notes = document.getElementById('notesInput').value;
+            chapterNotes[currentChapter] = notes;
+            alert('Notes saved successfully! 📝');
+            document.getElementById('notesModal').style.display = 'none';
+        }
+
+        // Progress tracking
+        function updateChapterProgress(chapter, status) {
+            chapterProgress[chapter] = status;
+            
+            const progressElement = document.getElementById(`progress-${chapter}`);
+            progressElement.className = `progress-indicator ${status.replace('-', '-')}`;
+            progressElement.textContent = status === 'not-started' ? 'Not Started' : 
+                                       status === 'in-progress' ? 'In Progress' : 'Completed';
+            
+            updateOverallProgress();
+        }
+
+        function updateOverallProgress() {
+            let completed = 0;
+            let inProgress = 0;
+            let notStarted = 0;
+            
+            Object.values(chapterProgress).forEach(status => {
+                if (status === 'completed') completed++;
+                else if (status === 'in-progress') inProgress++;
+                else notStarted++;
+            });
+            
+            document.getElementById('completedChapters').textContent = completed;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('inProgressCount').textContent = inProgress;
+            document.getElementById('notStartedCount').textContent = notStarted;
+            
+            const progressPercentage = (completed / 15) * 100;
+            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+        }
+
+        // Modal close functionality
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.onclick = function() {
+                this.closest('.modal').style.display = 'none';
+            }
+        });
+
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners
+        document.getElementById('submitAnswer').addEventListener('click', submitAnswer);
+        document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+        document.getElementById('markComplete').addEventListener('click', markChapterComplete);
+        document.getElementById('saveNotes').addEventListener('click', saveNotes);
+
+        // Initialize progress on page load
+        updateOverallProgress();
+
+        // Add loading states
+        function addLoadingState(element) {
+            element.classList.add('loading');
+            setTimeout(() => {
+                element.classList.remove('loading');
+            }, 1000);
+        }
+
+        // Add click effects to buttons
+        document.querySelectorAll('button, .action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        });
+
+        // Auto-save notes
+        let saveTimeout;
+        document.getElementById('notesInput').addEventListener('input', function() {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                chapterNotes[currentChapter] = this.value;
+                console.log('Notes auto-saved');
+            }, 2000);
+        });
+
+        // Add ripple effect to cards
+        document.querySelectorAll('.chapter-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Performance optimization - lazy load chapter content
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.chapter-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+
+    <style>
+        .visible {
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.3);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .action-btn-success {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .action-btn-success:hover {
+            background: #059669;
+            border-color: #059669;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus indicators for better accessibility */
+        *:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .dark-mode-container,
+            .chapter-actions,
+            .modal {
+                display: none !important;
+            }
+        }
+    </style>
+</body>
+</html>
